@@ -1,0 +1,29 @@
+const mongoose = require('mongoose');
+
+const messagechatSchema = new mongoose.Schema(
+  {
+    recivedId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User', 
+      required: true,
+    },
+    senderId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User', 
+      required: true,
+    },
+    content: {
+      type: String,
+      required: true,
+    },
+    timestamp: {
+      type: Date,
+      default: Date.now,
+    },
+  },
+  { timestamps: true }
+);
+
+const MessageChat = mongoose.model('Message', messagechatSchema);
+
+module.exports = MessageChat;
